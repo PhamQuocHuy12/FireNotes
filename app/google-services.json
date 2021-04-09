@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "432061919731",
+    "project_id": "mynote-506ce",
+    "storage_bucket": "mynote-506ce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:432061919731:android:3b42f8860d06c12fc6a286",
+        "android_client_info": {
+          "package_name": "com.example.firenotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "432061919731-nd5q4gmu28a6qb6r3gt2ta6rajf1au79.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo2XPZRHG4A6VT-ON68FyftciBbd7SjVU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "432061919731-nd5q4gmu28a6qb6r3gt2ta6rajf1au79.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
