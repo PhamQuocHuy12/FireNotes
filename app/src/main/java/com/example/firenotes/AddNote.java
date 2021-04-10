@@ -15,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -23,6 +24,7 @@ import java.util.Map;
 public class AddNote extends AppCompatActivity {
     FirebaseFirestore fstore;
     EditText noteTitle, noteContent;
+    ProgressBar progressBarSave;
 
 
     @Override
@@ -36,7 +38,7 @@ public class AddNote extends AppCompatActivity {
         noteContent = findViewById(R.id.addNoteContent);
         noteTitle = findViewById(R.id.addNoteTitle);
 
-
+        progressBarSave = findViewById(R.id.progressBar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +51,8 @@ public class AddNote extends AppCompatActivity {
                     Toast.makeText(AddNote.this, "EMPTY", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                progressBarSave.setVisibility(View.VISIBLE);
 
                 DocumentReference docref = fstore.collection("notes").document();
                 Map<String, Object> note = new HashMap<>();
@@ -65,6 +69,7 @@ public class AddNote extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(AddNote.this, "Error try again", Toast.LENGTH_SHORT).show();
+                        progressBarSave.setVisibility(View.INVISIBLE);
                     }
                 });
             }
