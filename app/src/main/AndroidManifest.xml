@@ -9,15 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FireNotes.NoActionBar">
+        <activity android:name=".EditNote"></activity>
         <activity
             android:name=".AddNote"
             android:label="@string/title_activity_add_note"
-            android:theme="@style/Theme.FireNotes.NoActionBar.NoActionBar"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.FireNotes.NoActionBar.NoActionBar">
             <meta-data
                 android:name="android.support.MainActivity"
-                android:value="com.example.firenotes.MainActivity">
-            </meta-data>
+                android:value="com.example.firenotes.MainActivity"></meta-data>
         </activity>
         <activity
             android:name=".NoteDetail"

@@ -22,7 +22,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.firenotes.model.Adapter;
 import com.example.firenotes.model.Note;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -40,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ActionBarDrawerToggle toggle;
     NavigationView nav_view;
     RecyclerView noteList;
-    Adapter adapter;
     FirebaseFirestore fstore;
     FirestoreRecyclerAdapter<Note, NoteViewHolder> noteAdapter;
 
@@ -99,16 +97,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.setDrawerIndicatorEnabled(true);
         toggle.syncState();
 
-//        List<String> titles = new ArrayList<>();
-//        List<String> content = new ArrayList<>();
-//
-//        titles.add("1st note title");
-//        content.add("drink water");
-//
-//        titles.add("2nd note title");
-//        content.add("be happy");
-
-//        adapter = new Adapter(titles, content);
         noteList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         noteList.setAdapter(noteAdapter);
 

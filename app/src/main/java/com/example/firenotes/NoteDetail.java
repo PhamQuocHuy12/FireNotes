@@ -27,6 +27,9 @@ public class NoteDetail extends AppCompatActivity {
 
         Intent data = getIntent();
 
+        String noteTitle = data.getStringExtra("title");
+        String noteContent = data.getStringExtra("content");
+
 
         TextView content = findViewById(R.id.noteDetailContent);
         TextView title = findViewById(R.id.noteDetailTitle);
@@ -41,8 +44,10 @@ public class NoteDetail extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(view.getContext(), EditNote.class);
+                intent.putExtra("title", noteTitle );
+                intent.putExtra("content", noteContent);
+                startActivity(intent);
             }
         });
     }
