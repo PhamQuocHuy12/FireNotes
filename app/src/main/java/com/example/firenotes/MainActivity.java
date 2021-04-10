@@ -11,22 +11,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
+import android.gesture.Gesture;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.firenotes.model.Note;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -66,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 noteViewHolder.noteContent.setText(note.getContent());
                 Integer code = getRandomcColor();
                 noteViewHolder.mCardView.setCardBackgroundColor(noteViewHolder.view.getResources().getColor(code, null));
+                String docId = noteAdapter.getSnapshots().getSnapshot(position).getId();
 
                 noteViewHolder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -74,7 +81,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         intent.putExtra("title", note.getTitle());
                         intent.putExtra("content", note.getContent());
                         intent.putExtra("code", code);
+                        intent.putExtra("noteId", docId);
                         v.getContext().startActivity(intent);
+                    }
+                });
+;
+                ImageView menuIcon = noteViewHolder.view.findViewById(R.id.menuIcon);
+                menuIcon.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final String docId = noteAdapter.getSnapshots().getSnapshot(position).getId();
+                        PopupMenu menu = new PopupMenu(v.getContext(), v);
+                        menu.setGravity(Gravity.END);
+                        menu.getMenu().add("Edit").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                Intent intent = new Intent(v.getContext(), EditNote.class);
+                                intent.putExtra("title", note.getTitle() );
+                                intent.putExtra("content", note.getContent());
+                                intent.putExtra("noteId", docId);
+                                startActivity(intent);
+                                return  false;
+                            }
+                        });
+                        menu.getMenu().add("Delete").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                DocumentReference docref = fstore.collection("notes").document(docId);
+                                docref.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(MainActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                return false;
+                            }
+                        });
+                        menu.show();
                     }
                 });
             }

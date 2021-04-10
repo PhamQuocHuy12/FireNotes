@@ -43,5 +43,28 @@
         android:textColor="#686868">
     </EditText>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/saveNoteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/editNoteContent"
+        app:layout_constraintEnd_toEndOf="@+id/editNoteContent"
+        app:layout_constraintStart_toStartOf="@+id/editNoteContent"
+        app:layout_constraintTop_toTopOf="@+id/editToolbar" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

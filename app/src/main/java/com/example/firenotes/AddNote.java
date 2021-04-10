@@ -40,7 +40,7 @@ public class AddNote extends AppCompatActivity {
 
         progressBarSave = findViewById(R.id.progressBar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.addNoteBtn);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

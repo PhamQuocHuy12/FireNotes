@@ -40,13 +40,14 @@ public class NoteDetail extends AppCompatActivity {
         content.setBackgroundColor(getResources().getColor(data.getIntExtra("code", 0)));
 
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.editNoteBtn);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), EditNote.class);
                 intent.putExtra("title", noteTitle );
                 intent.putExtra("content", noteContent);
+                intent.putExtra("noteId", data.getStringExtra("noteId"));
                 startActivity(intent);
             }
         });
