@@ -54,6 +54,7 @@ public class AddNote extends AppCompatActivity {
 
                 progressBarSave.setVisibility(View.VISIBLE);
 
+                //ADD NEW NOTE
                 DocumentReference docref = fstore.collection("notes").document();
                 Map<String, Object> note = new HashMap<>();
                 note.put("title", nTitle);

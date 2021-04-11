@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
-import android.gesture.Gesture;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -54,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
         noteList = findViewById(R.id.noteList);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -70,7 +68,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             protected void onBindViewHolder(@NonNull NoteViewHolder noteViewHolder, int position, @NonNull Note note) {
                 noteViewHolder.noteTitle.setText(note.getTitle());
                 noteViewHolder.noteContent.setText(note.getContent());
+
                 Integer code = getRandomcColor();
+
                 noteViewHolder.mCardView.setCardBackgroundColor(noteViewHolder.view.getResources().getColor(code, null));
                 String docId = noteAdapter.getSnapshots().getSnapshot(position).getId();
 
@@ -85,7 +85,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         v.getContext().startActivity(intent);
                     }
                 });
-;
+
+                //EDIT AND DELETE
                 ImageView menuIcon = noteViewHolder.view.findViewById(R.id.menuIcon);
                 menuIcon.setOnClickListener(new View.OnClickListener() {
                     @Override

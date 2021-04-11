@@ -15,7 +15,8 @@
             app:layout_constraintEnd_toEndOf="@+id/addNoteContent"
             app:layout_constraintStart_toStartOf="@+id/addNoteContent"
             app:layout_constraintTop_toTopOf="@+id/addNoteContent"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            android:backgroundTint="#FF5722"/>
 
         <EditText
             android:id="@+id/addNoteContent"

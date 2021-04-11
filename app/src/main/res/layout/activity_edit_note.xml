@@ -53,7 +53,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:srcCompat="@drawable/ic_baseline_save_24"
+        android:backgroundTint="#FF5722"/>
 
     <ProgressBar
         android:id="@+id/progressBar2"
@@ -64,7 +65,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/editNoteContent"
         app:layout_constraintEnd_toEndOf="@+id/editNoteContent"
         app:layout_constraintStart_toStartOf="@+id/editNoteContent"
-        app:layout_constraintTop_toTopOf="@+id/editToolbar" />
+        app:layout_constraintTop_toTopOf="@+id/editToolbar"
+        android:backgroundTint="#FF5722"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

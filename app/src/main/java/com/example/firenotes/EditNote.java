@@ -60,6 +60,7 @@ public class EditNote extends AppCompatActivity {
 
                 spinner.setVisibility(View.VISIBLE);
 
+                //EDIT NOTE
                 DocumentReference docref = fstore.collection("notes").document(data.getStringExtra("noteId"));
                 Map<String, Object> note = new HashMap<>();
                 note.put("title", nTitle);
