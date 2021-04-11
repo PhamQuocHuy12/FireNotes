@@ -56,12 +56,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        // Access a Cloud Firestore instance from your Activity
         fstore = FirebaseFirestore.getInstance();
+
+        //  get data from Firestore
         Query query = fstore.collection("notes").orderBy("title", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<Note> allNotes = new FirestoreRecyclerOptions.Builder<Note>()
                 .setQuery(query, Note.class)
                 .build();
-
+        // create new FirestoreRecyclerAdapter
         noteAdapter = new FirestoreRecyclerAdapter<Note, NoteViewHolder>(allNotes) {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
@@ -86,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
 
-                //EDIT AND DELETE
+                //Menu icon
                 ImageView menuIcon = noteViewHolder.view.findViewById(R.id.menuIcon);
                 menuIcon.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -94,6 +98,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         final String docId = noteAdapter.getSnapshots().getSnapshot(position).getId();
                         PopupMenu menu = new PopupMenu(v.getContext(), v);
                         menu.setGravity(Gravity.END);
+
+                        // Go to Edit activity
                         menu.getMenu().add("Edit").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
@@ -105,6 +111,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 return  false;
                             }
                         });
+
+                        // Delete a note
                         menu.getMenu().add("Delete").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
@@ -198,6 +206,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
+
+    // NOTE VIEW HOLDER
     public class NoteViewHolder extends RecyclerView.ViewHolder{
         TextView noteTitle, noteContent;
         View view;

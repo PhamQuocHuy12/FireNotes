@@ -38,6 +38,8 @@ public class EditNote extends AppCompatActivity {
         editNoteTitle =  findViewById(R.id.editNoteTitle);
         editNoteContent = findViewById(R.id.editNoteContent);
         spinner = findViewById(R.id.progressBar2);
+
+        // Access a Cloud Firestore instance from your Activity
         fstore = FirebaseFirestore.getInstance();
 
         String title = data.getStringExtra("title");
